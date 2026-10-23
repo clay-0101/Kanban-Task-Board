@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDefaultValue, setIsFromOpen } from "../../slices/formSlice";
 
 const TaskForm = ({ heading = "Add task" }) => {
-  let { register, handleSubmit, errors, addTaskHandle } = useTaskForm();
+  let { register, handleSubmit, errors, addTaskHandle, reset } = useTaskForm();
   let isOpen = useSelector((state) => state.form.isOpen);
   let dispatch = useDispatch();
 
@@ -14,6 +14,7 @@ const TaskForm = ({ heading = "Add task" }) => {
         onClick={() => {
           dispatch(setDefaultValue(null))
           dispatch(setIsFromOpen())
+          reset()
         }}
         className={`absolute inset-0 bg-black/60 transition-opacity duration-200 ${isOpen ? "opacity-100" : "opacity-0"
           }`}
@@ -29,6 +30,7 @@ const TaskForm = ({ heading = "Add task" }) => {
             onClick={() => {
               dispatch(setDefaultValue(null))
               dispatch(setIsFromOpen())
+              reset()
             }}
             className="grid h-9 w-9 place-items-center rounded-lg text-neutral-400 hover:bg-white/5 hover:text-white"
             aria-label="Close form"
@@ -106,7 +108,7 @@ const TaskForm = ({ heading = "Add task" }) => {
                 defaultValue="todo"
                 className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-neutral-200 outline-none focus:border-blue-500 [color-scheme:dark]"
               >
-                <option className="bg-[#161616] text-neutral-200" value="todo">
+                <option className="bg-[#161616] text-neutral-200" selected value="todo">
                   To Do
                 </option>
                 <option className="bg-[#161616] text-neutral-200" value="in-progress">
@@ -133,7 +135,7 @@ const TaskForm = ({ heading = "Add task" }) => {
                 defaultValue="medium"
                 className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-neutral-200 outline-none focus:border-blue-500 [color-scheme:dark]"
               >
-                <option className="bg-[#161616] text-neutral-200" value="Low">
+                <option className="bg-[#161616] text-neutral-200" selected value="Low">
                   Low
                 </option>
                 <option className="bg-[#161616] text-neutral-200" value="Medium">
@@ -172,6 +174,7 @@ const TaskForm = ({ heading = "Add task" }) => {
               onClick={() => {
                 dispatch(setDefaultValue(null))
                 dispatch(setIsFromOpen())
+                reset()
               }}
               className="flex-1 rounded-xl border border-white/10 px-4 py-2.5 text-sm text-neutral-300 hover:bg-white/5"
             >

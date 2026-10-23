@@ -55,7 +55,7 @@ const useTaskForm = () => {
 
     return {
         register, handleSubmit, errors,
-        tasks, addTaskHandle, dispatch, isOpen, filteredData
+        tasks, addTaskHandle, dispatch, isOpen, filteredData, reset
     }
 }
 

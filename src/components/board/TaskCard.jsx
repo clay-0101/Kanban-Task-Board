@@ -5,18 +5,19 @@ import { deleteTask } from "../../slices/taskSlice";
 import { setDefaultValue, setIsFromOpen } from "../../slices/formSlice";
 
 const TaskCard = ({ task }) => {
-  const {id, title, description, priority, dueDate } = task;
-   let {dispatch} =  useTaskForm()
+  const { id, title, description, priority, dueDate } = task;
+  let { dispatch } = useTaskForm();
 
   return (
-  
-    <article className="rounded-2xl border border-white/5 bg-[#161616] p-4 transition-colors hover:border-white/15">
+    <article className="group relative rounded-2xl border border-white/5 bg-[#161616] p-4 transition-all duration-200 hover:z-10 hover:scale-105 hover:border-white/20 hover:bg-[#1c1c1c] hover:shadow-2xl hover:shadow-black/60">
       {/* Top: priority */}
       <PriorityBadge priority={priority} />
 
       {/* Content */}
       <h3 className="mt-3 text-[15px] font-medium leading-snug">{title}</h3>
-      <p className="mt-1.5 line-clamp-2 text-xs text-neutral-500">{description}</p>
+      <p className="mt-1.5 line-clamp-2 text-xs text-neutral-500 group-hover:line-clamp-none group-hover:text-neutral-400">
+        {description}
+      </p>
 
       {/* Footer: due date + edit/delete */}
       <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3">
@@ -26,18 +27,22 @@ const TaskCard = ({ task }) => {
 
         <div className="flex items-center gap-1">
           <button
-          onClick={()=>{
-            dispatch(setDefaultValue(task))
-            dispatch(setIsFromOpen())
-          }}
-           className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/5" aria-label="Edit">
+            onClick={() => {
+              dispatch(setDefaultValue(task));
+              dispatch(setIsFromOpen());
+            }}
+            className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/5"
+            aria-label="Edit"
+          >
             <Pencil size={14} />
           </button>
-          <button 
-          onClick={()=>{
-            dispatch(deleteTask({id}))
-          }}
-          className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/5" aria-label="Delete">
+          <button
+            onClick={() => {
+              dispatch(deleteTask({ id }));
+            }}
+            className="rounded-lg p-1.5 text-neutral-500 hover:bg-white/5"
+            aria-label="Delete"
+          >
             <Trash2 size={14} />
           </button>
         </div>

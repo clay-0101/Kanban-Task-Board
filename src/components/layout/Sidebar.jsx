@@ -1,48 +1,29 @@
-import { useState } from "react";
 import {
   Home, PanelLeftClose, PanelLeftOpen, KanbanSquare, Pencil, Check, X,
 } from "lucide-react";
+import useSideBar from "../../hooks/sidebarHook";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [name, setName] = useState("enter your name..."); 
-  const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState(name); 
 
-  const initials = name
-    .split(" ")
-    .filter(Boolean)
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
+ let {initials, startEdit, saveName,name, isOpen, setIsOpen, isEditing, setIsEditing, draft, setDraft}  =useSideBar()
 
-  const startEdit = () => {
-    setDraft(name);
-    setIsEditing(true);
-  };
 
-  const saveName = (e) => {
-    e.preventDefault();
-    if (draft.trim()) setName(draft.trim());
-    setIsEditing(false);
-  };
+
+
 
   return (
-   
+
     <aside
-      className={`relative hidden lg:flex shrink-0 flex-col gap-6 overflow-hidden border-r border-white/5 bg-[#101010] p-3 h-screen sticky top-0 transition-[width] duration-200 ${
-        isOpen ? "lg:w-64" : "lg:w-[72px]"
-      }`}
+      className={`relative hidden lg:flex shrink-0 flex-col gap-6 overflow-hidden border-r border-white/5 bg-[#101010] p-3 h-screen sticky top-0 transition-[width] duration-200 ${isOpen ? "lg:w-64" : "lg:w-[72px]"
+        }`}
     >
 
       <div className="pointer-events-none absolute -left-16 -top-16 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl" />
 
-  
+
       <div
-        className={`relative flex items-center rounded-xl border border-white/5 bg-white/[0.03] p-2.5 ${
-          isOpen ? "gap-3" : "justify-center"
-        }`}
+        className={`relative flex items-center rounded-xl border border-white/5 bg-white/[0.03] p-2.5 ${isOpen ? "gap-3" : "justify-center"
+          }`}
       >
         {isOpen && (
           <>
@@ -71,9 +52,8 @@ const Sidebar = () => {
           <li>
             <a
               href="#"
-              className={`flex items-center rounded-lg bg-white px-3 py-2 text-sm font-medium text-black ${
-                isOpen ? "gap-3" : "justify-center"
-              }`}
+              className={`flex items-center rounded-lg bg-white px-3 py-2 text-sm font-medium text-black ${isOpen ? "gap-3" : "justify-center"
+                }`}
             >
               <Home size={17} />
               {isOpen && "Home"}
@@ -82,11 +62,10 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-   
+
       <div
-        className={`relative mt-auto flex items-center rounded-xl border border-white/5 bg-white/[0.03] p-2.5 ${
-          isOpen ? "gap-3" : "justify-center"
-        }`}
+        className={`relative mt-auto flex items-center rounded-xl border border-white/5 bg-white/[0.03] p-2.5 ${isOpen ? "gap-3" : "justify-center"
+          }`}
       >
         <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-neutral-700 text-xs">
           {initials || "?"}
