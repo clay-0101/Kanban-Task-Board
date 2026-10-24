@@ -12,7 +12,14 @@ const useTaskForm = () => {
     let { register, handleSubmit, reset, formState: { errors } } = useForm(
         {
             mode: "onChange",
-            values: defaultValue || {}
+            values: defaultValue || {
+                title: "",
+                description: "",
+                status: "todo",
+                priority: "Low",
+                dueDate: "",
+
+            }
         }
     );
 

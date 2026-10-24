@@ -132,10 +132,10 @@ const TaskForm = ({ heading = "Add task" }) => {
                   required: "Priority is required",
                 })}
                 id="task-priority"
-                defaultValue="medium"
+                defaultValue="Medium"
                 className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-neutral-200 outline-none focus:border-blue-500 [color-scheme:dark]"
               >
-                <option className="bg-[#161616] text-neutral-200" selected value="Low">
+                <option className="bg-[#161616] text-neutral-200"  value="Low">
                   Low
                 </option>
                 <option className="bg-[#161616] text-neutral-200" value="Medium">
